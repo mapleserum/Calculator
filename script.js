@@ -20,13 +20,13 @@ function div(no1, no2) {
 
 function operator(op, no1, no2){
     if (op === '+') {
-        add(no1, no2)
+        return add(no1, no2)
     } else if (op === '-') {
-        sub(no1, no2)
+        return sub(no1, no2)
     } else if (op === '*') {
-        mult(no1, no2)
+        return mult(no1, no2)
     } else if (op === '/') {
-        div(no1, no2)
+        return div(no1, no2)
     } else {
         return 'error'
     }

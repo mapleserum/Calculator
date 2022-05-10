@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: flex;
+}
+
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.operators{
+    display: grid;
+}
