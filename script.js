@@ -3,6 +3,7 @@ let operators = document.querySelectorAll('button.op')
 let current = document.querySelector('div.current');
 let clear = document.querySelector('button.clear')
 let equal = document.querySelector('button.equals')
+let neg = document.querySelector('button.neg')
 let sum
 let previousValue = ''
 let currentValue = '';
@@ -10,12 +11,19 @@ let operate = ''
 
 //buttons
 
+
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
-        currentValue += button.value;
-        document.getElementById('current').innerHTML = currentValue
+            currentValue += button.value;
+            document.getElementById('current').innerHTML = currentValue
         });
     });
+
+neg.addEventListener('click', () => {
+    currentValue = (currentValue * -1)
+    document.getElementById('current').innerHTML = currentValue
+}
+)
 
 clear.addEventListener('click', () => {
     currentValue = ''
@@ -25,6 +33,7 @@ clear.addEventListener('click', () => {
     });
 
 equal.addEventListener('click', () => {
+    sum = ''
     operator(operate, previousValue, currentValue)
     document.getElementById('previous').innerHTML = ''
     currentValue = sum
