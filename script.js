@@ -5,8 +5,9 @@ let clear = document.querySelector('button.clear')
 let equal = document.querySelector('button.equals')
 let neg = document.querySelector('button.neg')
 let sum
+let control
 let previousValue = ''
-let currentValue = '';
+let currentValue = 0;
 let operate = ''
 
 //buttons
@@ -14,10 +15,22 @@ let operate = ''
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
+        if (currentValue === 0) {
+            currentValue = ''
+        }
+        if (control === 2) {
+            previousValue = currentValue
+            currentValue = 0
             currentValue += button.value;
             document.getElementById('current').innerHTML = currentValue
-        });
+            document.getElementById('previous').innerHTML = previousValue
+            control = ''
+            return
+        }
+        currentValue += button.value;
+        document.getElementById('current').innerHTML = currentValue
     });
+});
 
 neg.addEventListener('click', () => {
     currentValue = (currentValue * -1)
@@ -26,7 +39,7 @@ neg.addEventListener('click', () => {
 )
 
 clear.addEventListener('click', () => {
-    currentValue = ''
+    currentValue = 0
     previousValue = ''
     document.getElementById('current').innerHTML = 0
     document.getElementById('previous').innerHTML = ''
@@ -34,19 +47,25 @@ clear.addEventListener('click', () => {
 
 equal.addEventListener('click', () => {
     sum = ''
+    if (currentValue === 0 || previousValue === '' || operate === '') {
+        document.getElementById('previous').innerHTML = previousValue
+        document.getElementById('current').innerHTML = currentValue
+        return
+    }
     operator(operate, previousValue, currentValue)
     document.getElementById('previous').innerHTML = ''
     currentValue = sum
     document.getElementById('current').innerHTML = sum
-    console.log(previousValue, currentValue, operate)
     previousValue = ''
     currentValue = sum
     operate = ''
+    control = 2
 }
 )
 
 operators.forEach((button) => {
     button.addEventListener('click', ()=> {
+        control = ''
         currentValue = document.getElementById('current').innerHTML
         operate = button.value
         if (previousValue > 0 || previousValue < 0) {
@@ -56,8 +75,7 @@ operators.forEach((button) => {
         previousValue = currentValue
         document.getElementById('previous').innerHTML = previousValue
         }
-        console.log('previous value is ' + previousValue, 'current is ' + currentValue, operate)
-        currentValue = ''
+        currentValue = 0
         document.getElementById('current').innerHTML = currentValue
         
     })
