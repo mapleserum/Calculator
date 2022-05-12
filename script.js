@@ -55,9 +55,8 @@ equal.addEventListener('click', () => {
     operator(operate, previousValue, currentValue)
     document.getElementById('previous').innerHTML = ''
     currentValue = sum
-    document.getElementById('current').innerHTML = sum
+    document.getElementById('current').innerHTML = currentValue
     previousValue = ''
-    currentValue = sum
     operate = ''
     control = 2
 }
@@ -66,8 +65,6 @@ equal.addEventListener('click', () => {
 operators.forEach((button) => {
     button.addEventListener('click', ()=> {
         control = ''
-        currentValue = document.getElementById('current').innerHTML
-        operate = button.value
         if (previousValue > 0 || previousValue < 0) {
             operator(operate, previousValue, currentValue)
             previousValue = document.getElementById('previous').innerHTML
@@ -75,6 +72,8 @@ operators.forEach((button) => {
         previousValue = currentValue
         document.getElementById('previous').innerHTML = previousValue
         }
+        currentValue = document.getElementById('current').innerHTML
+        operate = button.value
         currentValue = 0
         document.getElementById('current').innerHTML = currentValue
         
