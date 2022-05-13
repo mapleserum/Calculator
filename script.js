@@ -7,20 +7,52 @@ let neg = document.querySelector('button.neg')
 let sum
 let control
 let previousValue = ''
-let currentValue = 0;
+let currentValue = '';
 let operate = ''
 
 //buttons
 
+equal.addEventListener('click', () => {
+    sum = ''
+    if (currentValue === 0 || previousValue === '' || operate === '') {
+        document.getElementById('previous').innerHTML = previousValue
+        document.getElementById('current').innerHTML = currentValue
+        return
+    }
+    operator(operate, previousValue, currentValue)
+    document.getElementById('previous').innerHTML = ''
+    currentValue = sum
+    document.getElementById('current').innerHTML = currentValue
+    previousValue = currentValue
+    operate = ''
+    control = 2
+}
+)
+
+operators.forEach((button) => {
+    button.addEventListener('click', ()=> {
+        control = ''
+        if (previousValue > 0 || previousValue < 0) {
+            operator(operate, previousValue, currentValue)
+            previousValue = sum
+            document.getElementById('previous').innerHTML = previousValue
+        } else {
+        previousValue = currentValue
+        document.getElementById('previous').innerHTML = previousValue
+        }
+        currentValue = document.getElementById('current').innerHTML
+        operate = button.value
+        currentValue = ''
+        document.getElementById('current').innerHTML = 0
+        
+    })
+})
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
-        if (currentValue === 0) {
-            currentValue = ''
-        }
         if (control === 2) {
-            previousValue = currentValue
-            currentValue = 0
+            //previousValue = currentValue
+            currentValue = ''
             currentValue += button.value;
             document.getElementById('current').innerHTML = currentValue
             document.getElementById('previous').innerHTML = previousValue
@@ -39,46 +71,11 @@ neg.addEventListener('click', () => {
 )
 
 clear.addEventListener('click', () => {
-    currentValue = 0
+    currentValue = ''
     previousValue = ''
     document.getElementById('current').innerHTML = 0
-    document.getElementById('previous').innerHTML = ''
+    document.getElementById('previous').innerHTML = previousValue
     });
-
-equal.addEventListener('click', () => {
-    sum = ''
-    if (currentValue === 0 || previousValue === '' || operate === '') {
-        document.getElementById('previous').innerHTML = previousValue
-        document.getElementById('current').innerHTML = currentValue
-        return
-    }
-    operator(operate, previousValue, currentValue)
-    document.getElementById('previous').innerHTML = ''
-    currentValue = sum
-    document.getElementById('current').innerHTML = currentValue
-    previousValue = ''
-    operate = ''
-    control = 2
-}
-)
-
-operators.forEach((button) => {
-    button.addEventListener('click', ()=> {
-        control = ''
-        if (previousValue > 0 || previousValue < 0) {
-            operator(operate, previousValue, currentValue)
-            previousValue = document.getElementById('previous').innerHTML
-        } else {
-        previousValue = currentValue
-        document.getElementById('previous').innerHTML = previousValue
-        }
-        currentValue = document.getElementById('current').innerHTML
-        operate = button.value
-        currentValue = 0
-        document.getElementById('current').innerHTML = currentValue
-        
-    })
-})
 
 function add(no1, no2){
     sum = +no1 + +no2
