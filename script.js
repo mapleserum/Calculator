@@ -31,8 +31,13 @@ equal.addEventListener('click', () => {
 
 operators.forEach((button) => {
     button.addEventListener('click', ()=> {
-        control = ''
+        if (control === 2) {
+            previousValue = ''
+        }
+        if (control === 3) {
         operate = button.value
+        }
+        control = ''
         if (previousValue > 0 || previousValue < 0) {
             operator(operate, previousValue, currentValue)
             previousValue = sum
@@ -52,12 +57,11 @@ operators.forEach((button) => {
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
         if (control === 2) {
-            //previousValue = currentValue
             currentValue = ''
             currentValue += button.value;
             document.getElementById('current').innerHTML = currentValue
             document.getElementById('previous').innerHTML = previousValue
-            control = ''
+            control = 3
             return
         }
         currentValue += button.value;
