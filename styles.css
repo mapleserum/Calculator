@@ -15,11 +15,11 @@ body {
     height: 525px;
     border: solid;
     border-radius: 20px;
-    background-color: gray;
+    background-color: darkslategrey;
 }
 
 .display{
-    margin: 25px 25px 18px 25px;
+    margin: 25px 25px 15px 25px;
     border-radius: 10px;
     width: 372px;
     height: 100px;
@@ -44,11 +44,42 @@ body {
     font-size: xx-large;
 }
 
+.del {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 7px;
+    padding-top: 30px;
+}
+
+.back,
+.clear {
+    font-size: smaller;
+    height: 25px;
+    width: 173px;
+}
+
+.back,
+.zero,
+.dec,
+.neg,
+.equals,
+.op {
+    background-color: rgb(108, 167, 142);
+}
+
+.clear {
+    background-color: coral;
+}
+
 .container {
     display: flex;
     width: 372px;
-    height: 360px;
+    height: 300px;
     margin: auto
+}
+
+.num {
+    background-color: lightgrey;
 }
 
 .numbers {
@@ -71,5 +102,6 @@ button {
     font-size: xx-large;
 }
 
-button:hover {
+.zero {
+    grid-column: span 2;
 }

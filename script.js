@@ -1,9 +1,10 @@
 /*Coded by Daniel Gingras on May 13th, 2022*/
 
 /*Features to include:
-Decimal point
+Set fix decimal max
 Delete/Backspace key
 Keyboard compatibility
+Maybe an ^x key
 */
 
 let numbers = document.querySelectorAll('button.num');
@@ -12,11 +13,13 @@ let current = document.querySelector('div.current');
 let clear = document.querySelector('button.clear')
 let equal = document.querySelector('button.equals')
 let neg = document.querySelector('button.neg')
+let back = document.querySelector('button.back')
+let dec = document.querySelector('button.dec')
 let sum
-let control /*Allows equal sign to manuever into equations*/
 let previousValue = ''
 let currentValue = '';
 let operate = ''
+let int = ''
 
 //buttons
 
@@ -31,21 +34,14 @@ equal.addEventListener('click', () => {
     document.getElementById('previous').innerHTML = ''
     currentValue = sum
     document.getElementById('current').innerHTML = currentValue
-    previousValue = currentValue
+    previousValue = ''
+    currentValue = ''
     operate = ''
-    control = 2
 }
 )
 
 operators.forEach((button) => {
     button.addEventListener('click', ()=> {
-        if (control === 2) {
-            previousValue = ''
-        }
-        if (control === 3) {
-        operate = button.value
-        }
-        control = ''
         if (previousValue > 0 || previousValue < 0) {
             operator(operate, previousValue, currentValue)
             previousValue = sum
@@ -64,18 +60,20 @@ operators.forEach((button) => {
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
-        if (control === 2) {
-            currentValue = ''
-            currentValue += button.value;
-            document.getElementById('current').innerHTML = currentValue
-            document.getElementById('previous').innerHTML = previousValue
-            control = 3
-            return
-        }
         currentValue += button.value;
         document.getElementById('current').innerHTML = currentValue
     });
 });
+
+dec.addEventListener('click', () => {
+    int = ''
+    isInt(currentValue)
+    if (int === true) {
+    currentValue += '.';
+    document.getElementById('current').innerHTML = currentValue
+    } else {
+    return
+    }})
 
 neg.addEventListener('click', () => {
     currentValue = (currentValue * -1)
@@ -91,6 +89,12 @@ clear.addEventListener('click', () => {
     });
 
 // functions
+
+function isInt(no1) {
+    int = no1 % 1 === 0;
+    return int
+}
+
 
 function add(no1, no2){
     sum = +no1 + +no2
