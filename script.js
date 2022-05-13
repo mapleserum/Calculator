@@ -32,6 +32,7 @@ equal.addEventListener('click', () => {
 operators.forEach((button) => {
     button.addEventListener('click', ()=> {
         control = ''
+        operate = button.value
         if (previousValue > 0 || previousValue < 0) {
             operator(operate, previousValue, currentValue)
             previousValue = sum
