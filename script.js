@@ -15,6 +15,7 @@ let equal = document.querySelector('button.equals')
 let neg = document.querySelector('button.neg')
 let back = document.querySelector('button.back')
 let dec = document.querySelector('button.dec')
+let numString
 let sum
 let previousValue = ''
 let currentValue = '';
@@ -78,6 +79,14 @@ dec.addEventListener('click', () => {
 neg.addEventListener('click', () => {
     currentValue = (currentValue * -1)
     document.getElementById('current').innerHTML = currentValue
+}
+)
+
+back.addEventListener('click', () => {
+    numString = currentValue.toString()
+    currentValue = numString.slice(0, -1)
+    document.getElementById('current').innerHTML = +currentValue
+    
 }
 )
 
