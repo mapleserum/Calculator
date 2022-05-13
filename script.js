@@ -1,3 +1,11 @@
+/*Coded by Daniel Gingras on May 13th, 2022*/
+
+/*Features to include:
+Decimal point
+Delete/Backspace key
+Keyboard compatibility
+*/
+
 let numbers = document.querySelectorAll('button.num');
 let operators = document.querySelectorAll('button.op')
 let current = document.querySelector('div.current');
@@ -5,7 +13,7 @@ let clear = document.querySelector('button.clear')
 let equal = document.querySelector('button.equals')
 let neg = document.querySelector('button.neg')
 let sum
-let control
+let control /*Allows equal sign to manuever into equations*/
 let previousValue = ''
 let currentValue = '';
 let operate = ''
@@ -81,6 +89,8 @@ clear.addEventListener('click', () => {
     document.getElementById('current').innerHTML = 0
     document.getElementById('previous').innerHTML = previousValue
     });
+
+// functions
 
 function add(no1, no2){
     sum = +no1 + +no2
