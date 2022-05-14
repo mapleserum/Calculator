@@ -2,7 +2,6 @@
 
 /*Features to include:
 Set fix decimal max
-Delete/Backspace key
 Keyboard compatibility
 Maybe an ^x key
 */
@@ -61,6 +60,12 @@ operators.forEach((button) => {
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
+        numString = currentValue.toString()
+        let length = numString.length
+        if (length === 17) {
+            return
+        }
+
         currentValue += button.value;
         document.getElementById('current').innerHTML = currentValue
     });
